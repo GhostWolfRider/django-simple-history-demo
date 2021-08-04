@@ -7,6 +7,9 @@ try:
 except ImportError:
     from django.contrib.postgres.fields import JSONField
 
+# For django-simple-history
+from simple_history.models import HistoricalRecords
+
 
 class Document(models.Model):
     # UUID of the document
@@ -35,6 +38,11 @@ class Document(models.Model):
 
     # timestamp for when the document was last modified
     modified_ts = models.DateTimeField(auto_now=True)
+
+    # For django-simple-history
+    history = HistoricalRecords(
+        history_id_field=models.UUIDField(default=uuid.uuid4)
+    )
 
     def __str__(self):
         return self.title

@@ -2,6 +2,9 @@ import uuid
 from django.contrib.auth.models import User
 from django.db import models
 
+# For django-simple-history
+from simple_history.models import HistoricalRecords
+
 
 # Create your models here.
 class Profile(models.Model):
@@ -37,3 +40,8 @@ class Profile(models.Model):
 
     # Timestamp for when the profile was last modified
     modified_ts = models.DateTimeField(auto_now_add=True)
+
+    # For django-simple-history
+    history = HistoricalRecords(
+        history_id_field=models.UUIDField(default=uuid.uuid4)
+    )

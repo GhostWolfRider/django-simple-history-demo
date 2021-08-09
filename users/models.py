@@ -45,3 +45,6 @@ class Profile(models.Model):
     history = HistoricalRecords(
         history_id_field=models.UUIDField(default=uuid.uuid4)
     )
+
+    def __str__(self):
+        return f'{self.user.first_name + " " + self.user.last_name}'

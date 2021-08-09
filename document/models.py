@@ -11,6 +11,14 @@ except ImportError:
 from simple_history.models import HistoricalRecords
 
 
+class FieldChangedHistoricalModel(models.Model):
+    # model to add in historical document data
+    field_changed = JSONField(null=True, blank=True)
+
+    class Meta:
+        abstract = True
+
+
 class Document(models.Model):
     # UUID of the document
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -41,8 +49,10 @@ class Document(models.Model):
 
     # For django-simple-history
     history = HistoricalRecords(
-        history_id_field=models.UUIDField(default=uuid.uuid4)
+        history_id_field=models.UUIDField(default=uuid.uuid4),
+        bases=[FieldChangedHistoricalModel, ]
     )
 
     def __str__(self):
         return self.title
+

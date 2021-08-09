@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'django_simple_history.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
+        'NAME': 'demo',
+        'USER': 'demo_admin',
+        'PASSWORD': 'demo_admin',
         'HOST': 'localhost',
         'PORT': '5432',
     }
